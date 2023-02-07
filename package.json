@@ -1,5 +1,6 @@
 {
-  "name": "demo",
+  "name": "NodeWebsite",
+  "main": "index.js",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-mongo": "^4.6.0",
