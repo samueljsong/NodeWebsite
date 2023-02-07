@@ -79,9 +79,9 @@ app.get("/signup", async(req, res) => {
   var html = `
   <form action = '/createUser' method = 'post'>
       <p id = 'text'>Create User<p>
-      <input name='name' type='text' placeholder='name'><br>
-      <input name='email' type='text' placeholder='email'><br>
-      <input name='password' type='password' placeholder='password'><br>
+      <input name='name' type='text' placeholder='name' required><br>
+      <input name='email' type='text' placeholder='email' required><br>
+      <input name='password' type='password' placeholder='password' required><br>
       <button>Submit</button>
   </form>
   `
@@ -110,8 +110,8 @@ app.get("/login", async(req, res) => {
   var html = `
   <form action = '/loggingin' method = 'post'>
       <p id = 'text'>Log in<p>
-      <input name='email' type='text' placeholder='email'><br>
-      <input name='password' type='password' placeholder='password'><br>
+      <input name='email' type='text' placeholder='email' required><br>
+      <input name='password' type='password' placeholder='password' required><br>
       <button>Submit</button>
   </form>
   `
