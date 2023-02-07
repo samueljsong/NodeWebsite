@@ -21,7 +21,7 @@ const mongodb_password = process.env.MONGODB_PASSWORD;
 const mongodb_session_secret = process.env.MONGODB_SESSION_SECRET;
 const node_session_secret = process.env.NODE_SESSION_SECRET;
 
-const expireTime = 24 * 60 * 60 * 1000; //expires after 1 day  (hours * minutes * seconds * millis)
+const expireTime = 3600000; //expires after 1 hour  (hours in milliseconds)
 
 
 dotenv.config({ path: './.env' })
@@ -93,13 +93,17 @@ app.post("/createUser", async(req, res) => {
   var email = req.body.email;
   var password = req.body.password;
   var name = req.body.name;
+  
+  if (email == 0 || password == 0 || name == 0) {
+    res.redirect("/signup")
+  } else {
+    var hashedPassword = bcrypt.hashSync(password, saltRounds)
 
-  var hashedPassword = bcrypt.hashSync(password, saltRounds)
+    users.push({ email: email, password: hashedPassword, name: name });
+    console.log(users)
 
-  users.push({ email: email, password: hashedPassword, name: name });
-  console.log(users)
-
-  res.redirect("/")
+    res.redirect("/")
+  }
 })
 
 app.get("/login", async(req, res) => {
